@@ -1,0 +1,40 @@
+.imageWrap {
+  height: 100dvh;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.content {
+  flex: 1;
+}
+
+.imageList {
+  overflow: auto;
+  :global {
+    img {
+      width: 50%;
+      border-radius: 4px;
+      box-sizing: border-box;
+      padding: 4px
+    }
+  }
+}
+// 媒体查询，宽度小于 600px 时，每行显示 2 张图片
+@media (max-width: 600px) {
+  .imageList :global {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  column-gap: 8px;
+  padding-right: 57px;
+}

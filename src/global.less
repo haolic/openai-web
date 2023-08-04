@@ -1,0 +1,54 @@
+@scrollbar-thumb-color: rgba(91, 22, 63, 0.5);
+@font-family: 'LXGW WenKai Screen', 'LXGW WenKai Screen R', sans-serif;
+
+* {
+  overscroll-behavior: none;
+}
+*::placeholder {
+  font-family: @font-family;
+}
+
+body,
+html,
+#root {
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  line-height: 1.5;
+  font-weight: 300;
+  font-family: @font-family;
+}
+
+.ant-btn,
+.ant-input,
+.ant-modal {
+  font-family: @font-family;
+}
+
+/*滚动条整体粗细样式*/
+::-webkit-scrollbar {
+  /*高宽分别对应横竖滚动条的尺寸*/
+  width: 8px;
+  height: 6px;
+}
+
+/*滚动条里面小方块*/
+::-webkit-scrollbar-thumb {
+  /* 颜色 */
+  /* 线性渐变背景 */
+  background-image: linear-gradient(
+    45deg,
+    @scrollbar-thumb-color 25%,
+    rgba(30, 40, 130, 0.478) 50%,
+    @scrollbar-thumb-color 100%
+  ) !important;
+  border-radius: 10px !important;
+  opacity: 0.2;
+}
+
+/*滚动条轨道*/
+::-webkit-scrollbar-track {
+  background: rgba(22, 14, 14, 0.198) !important;
+  border-radius: 10px !important;
+}
