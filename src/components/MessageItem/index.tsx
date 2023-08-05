@@ -11,6 +11,10 @@ import classnames from 'classnames';
 import gpt from '@/assets/ChatGPT_24.svg';
 import { useSnapshot } from 'valtio';
 import store from '@/store';
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
+
+import 'katex/dist/katex.min.css'
 
 interface IProps {
   messageInfo: IMessageItem;
@@ -44,6 +48,9 @@ const MessageItem = React.memo((props: IProps) => {
       {messageInfo.role === ROLEMAP.ASSISTANT && (
         <div className={classnames(styles.typography, styles[theme])}>
           <ReactMarkdown
+            // 数学公式渲染
+            rehypePlugins={[rehypeKatex]}
+            remarkPlugins={[remarkGfm, remarkMath]}
             components={{
               table: ({ node, ...props }) => {
                 return (
@@ -86,8 +93,8 @@ const MessageItem = React.memo((props: IProps) => {
                 );
               },
             }}
-            remarkPlugins={[remarkGfm]}
           >
+            
             {`${messageInfo.content || ''}${showTypeBlock ? ' ▂' : ''}`}
           </ReactMarkdown>
         </div>

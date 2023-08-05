@@ -21,7 +21,7 @@ export default defineConfig({
       localEnabled: false
     }),
     visualizer({
-      open: false,
+      open: true,
       gzipSize: true,
       brotliSize: false,
     }),
