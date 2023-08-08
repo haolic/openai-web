@@ -6,7 +6,7 @@ const Version = () => {
 
   return (
     <div className={styles.version} style={{ color: themeToken.colorText }}>
-      V2.2.2
+      V2.3.0
     </div>
   );
 };
