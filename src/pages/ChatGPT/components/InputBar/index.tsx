@@ -59,7 +59,6 @@ const InputBar = (props: IProps) => {
         <div className={styles.content}>
           <Input.TextArea
             bordered={false}
-            maxLength={700}
             placeholder="你好，有什么可以帮您？"
             ref={inputRef}
             value={value}
