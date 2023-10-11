@@ -69,7 +69,7 @@ const InputBar = (props: IProps) => {
             autoSize={{ minRows: 1, maxRows: 6 }}
           />
           <Button
-            type="ghost"
+            type="link"
             size="large"
             onClick={btnClick}
             loading={sendBtnLoading}
