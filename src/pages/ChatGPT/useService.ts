@@ -76,7 +76,7 @@ const useService = () => {
         const messageuid = localStorage.getItem(MESSAGE_UID) || '';
         requestEventStream(
           {
-            url: '/api/chat',
+            url: '/api/chat-string',
             method: 'POST',
             headers: {
               messageuid,
@@ -87,6 +87,7 @@ const useService = () => {
             abortController: storeRef.abortController,
           },
           (res: string | number) => {
+            console.log(123, res);
             if (res === -1) {
               store.sendBtnLoading = false;
               resolve('');
