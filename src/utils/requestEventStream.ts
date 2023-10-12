@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import { MESSAGE_UID } from './constant';
-import { fetchEventSource } from '@microsoft/fetch-event-source';
+import { fetchEventSource } from '@/utils/fetchEventSource';
 
 interface IOptions {
   url: string;
@@ -18,16 +18,17 @@ const requestEventStream = async (
   const { url, method, data, headers, abortController } = options;
 
   fetchEventSource(url, {
-    method: 'POST',
+    method,
     headers: {
       'Content-Type': 'application/json',
       ...headers,
     },
     body: JSON.stringify(data),
     signal: abortController?.signal,
+    openWhenHidden: true,
     async onopen(res) {
       const messageuid = res.headers.get(MESSAGE_UID);
-      console.log(messageuid)
+      console.log(messageuid);
       if (messageuid) {
         localStorage.setItem(MESSAGE_UID, messageuid);
       }
