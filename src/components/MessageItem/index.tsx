@@ -29,7 +29,6 @@ const colorMap = new Map([
 const MessageItem = React.memo((props: IProps) => {
   const { messageInfo, showTypeBlock } = props;
 
-  console.log(messageInfo);
   const { theme } = useSnapshot(store);
 
   return (

@@ -12,6 +12,7 @@ export interface IMessageItem {
   content?: string;
   key?: string;
   color: string;
+  time?: string;
 }
 
 interface IProps {
