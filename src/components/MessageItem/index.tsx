@@ -11,10 +11,10 @@ import classnames from 'classnames';
 import gpt from '@/assets/ChatGPT_24.svg';
 import { useSnapshot } from 'valtio';
 import store from '@/store';
-import remarkMath from 'remark-math'
-import rehypeKatex from 'rehype-katex'
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
-import 'katex/dist/katex.min.css'
+import 'katex/dist/katex.min.css';
 
 interface IProps {
   messageInfo: IMessageItem;
@@ -28,6 +28,8 @@ const colorMap = new Map([
 
 const MessageItem = React.memo((props: IProps) => {
   const { messageInfo, showTypeBlock } = props;
+
+  console.log(messageInfo);
   const { theme } = useSnapshot(store);
 
   return (
@@ -38,6 +40,7 @@ const MessageItem = React.memo((props: IProps) => {
       }}
       className={classnames(styles['msg-item'])}
     >
+      {messageInfo.time ? <div className={styles.time}>{messageInfo.time}</div> : null}
       {messageInfo.role === ROLEMAP.ASSISTANT && <Avatar src={gpt} size={28} />}
       {messageInfo.role === ROLEMAP.USER && (
         <div className={styles.selfavatar}>
@@ -94,7 +97,6 @@ const MessageItem = React.memo((props: IProps) => {
               },
             }}
           >
-            
             {`${messageInfo.content || ''}${showTypeBlock ? ' ▂' : ''}`}
           </ReactMarkdown>
         </div>

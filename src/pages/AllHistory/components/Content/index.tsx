@@ -7,18 +7,23 @@ import { Result } from 'antd';
 import { CommentOutlined } from '@ant-design/icons';
 import styles from './index.module.less';
 import useThemeToken from '@/utils/useThemeToken';
+import { getRandomColor } from '@/utils';
 
 const Content = () => {
   const { historyListMap } = useSnapshot(store);
   const themeToken = useThemeToken();
   const { id } = useParams();
 
-  return historyListMap[id as string]?.content ? (
+  const list = historyListMap[id as string]?.content?.map((el) => {
+    return {
+      ...el,
+      color: getRandomColor(),
+    };
+  });
+
+  return list?.length ? (
     <div style={{ overflow: 'auto', flex: 1 }}>
-      <MessageContent
-        messageList={historyListMap[id as string]?.content as IMessageItem[]}
-        className={styles.wrap}
-      />
+      <MessageContent messageList={list as IMessageItem[]} className={styles.wrap} />
     </div>
   ) : (
     <div className={styles.empty}>
