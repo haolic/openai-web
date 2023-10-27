@@ -1,9 +1,6 @@
 import store from '@/store';
 import request from '@/utils/request';
-import { useEffect, useState } from 'react';
-import { totp } from 'otp-io';
-import { hmac } from 'otp-io/crypto';
-import { yekretne } from '@/utils';
+import { useEffect } from 'react';
 
 export type IHistoryList = HistoryItem[];
 
@@ -19,8 +16,6 @@ interface IContent {
 }
 
 const useService = () => {
-  const [pass, setPass] = useState(false);
-
   const getList = async () => {
     try {
       const res: IHistoryList = await request('/api/history-list');
@@ -38,21 +33,8 @@ const useService = () => {
   };
 
   useEffect(() => {
-    if (!pass) return;
     getList();
-  }, [pass]);
-
-  const onChange: React.ChangeEventHandler<HTMLInputElement> = async (v) => {
-    const code = await totp(hmac, {
-      secret: yekretne,
-    });
-
-    if (code === v.target.value) {
-      setPass(true);
-    }
-  };
-
-  return { pass, onChange };
+  }, []);
 };
 
 export default useService;

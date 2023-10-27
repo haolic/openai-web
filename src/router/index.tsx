@@ -3,7 +3,6 @@ import ChatGPT from '@/pages/ChatGPT';
 import ImageGen from '@/pages/ImageGen';
 import AllHistory from '@/pages/AllHistory';
 import Page500 from '@/components/Page500';
-import HistoryQrCode from '@/pages/HistoryQrCode';
 import BaseLayout from '@/components/Layout';
 
 const router = createBrowserRouter([
@@ -24,11 +23,6 @@ const router = createBrowserRouter([
       {
         path: '/history',
         element: <AllHistory />,
-        errorElement: <Page500 />,
-      },
-      {
-        path: '/history-qr-code',
-        element: <HistoryQrCode />,
         errorElement: <Page500 />,
       },
       {
