@@ -37,7 +37,17 @@ const AllHistory = () => {
       <Content />
     </div>
   ) : (
-    <div>请输入验证码L</div>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        fontSize: 32,
+      }}
+    >
+      <div>请输入验证码L</div>
+    </div>
   );
 };
 
