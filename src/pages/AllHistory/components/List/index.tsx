@@ -20,7 +20,7 @@ const List = () => {
         dom.scrollIntoView();
       }
     }
-  }, [id]);
+  }, []);
 
   const onDelete = (uid: string) => {
     deleteHistory(uid);
