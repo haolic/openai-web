@@ -2,6 +2,8 @@ import { THEME_ENUM } from '@/utils/constant';
 import { proxy, ref, subscribe } from 'valtio';
 import { HistoryItem, IHistoryList } from '@/pages/AllHistory/useService';
 import { IMessageItem } from '@/components/MessageContent';
+import request from '@/utils/request';
+import { message } from 'antd';
 
 interface IStore {
   theme: THEME_ENUM;
@@ -51,6 +53,36 @@ prefersColor.addEventListener('change', (event) => {
 export const changeTheme = () => {
   const theme = store.theme === THEME_ENUM.DARK ? THEME_ENUM.LIGHT : THEME_ENUM.DARK;
   store.theme = theme;
+};
+
+export const getHistoryList = async () => {
+  try {
+    const res: IHistoryList = await request('/api/history-list');
+
+    const map = res.reduce((prev, next) => {
+      prev[next.id] = next;
+      return prev;
+    }, {} as any);
+
+    store.historyList = res;
+    store.historyListMap = map;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const deleteHistory = async (uid: string) => {
+  try {
+    const res: any = await request.post('/api/delete-history', {
+      uid,
+    });
+    if (!res.error) {
+      message.success('删除成功');
+      await getHistoryList();
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export default store;

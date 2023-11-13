@@ -39,7 +39,8 @@ const requestEventStream = async (
         callback(-1);
         return;
       }
-      callback(response.data || '');
+
+      callback(JSON.parse(response.data).data || '');
     },
     onerror(response: any) {
       console.log('onerror', response);

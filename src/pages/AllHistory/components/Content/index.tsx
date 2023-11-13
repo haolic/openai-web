@@ -1,4 +1,3 @@
-import React from 'react';
 import MessageContent, { IMessageItem } from '@/components/MessageContent';
 import { useSnapshot } from 'valtio';
 import store from '@/store';
@@ -8,6 +7,7 @@ import { CommentOutlined } from '@ant-design/icons';
 import styles from './index.module.less';
 import useThemeToken from '@/utils/useThemeToken';
 import { getRandomColor } from '@/utils';
+import { v4 as uuid } from 'uuid';
 
 const Content = () => {
   const { historyListMap } = useSnapshot(store);
@@ -18,6 +18,7 @@ const Content = () => {
     return {
       ...el,
       color: getRandomColor(),
+      key: uuid(),
     };
   });
 

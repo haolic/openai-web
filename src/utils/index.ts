@@ -3,3 +3,7 @@ export const getRandomColor = () => {
   const color = Math.floor(Math.random() * 0xffffff).toString(16);
   return `#${color.padStart(6, '0')}`;
 };
+
+export const convertToASIC = (str: string) => {
+  return str.charCodeAt(0);
+};

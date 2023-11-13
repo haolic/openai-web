@@ -4,13 +4,35 @@
   height: 100vh;
   overflow: auto;
   width: 200px;
+  :global(.ant-menu-item:hover) {
+    .deleteIcon {
+      width: 14px;
+    }
+  }
+  :global(.ant-menu-item) {
+    overflow: initial;
+  }
+}
+
+.deleteIcon {
+  display: block;
+  overflow: hidden;
+  transition: width 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  width: 0;
+  color: red;
 }
 
 .label {
-  display: inline-block;
+  display: flex;
   max-width: 100%;
+  white-space: nowrap;
+}
+
+.labelText {
+  flex: 1;
   overflow: hidden;
-  text-align: left;
+  width: 0;
+  word-break: keep-all;
+  white-space: nowrap;
   text-overflow: ellipsis;
-  vertical-align: middle;
 }
