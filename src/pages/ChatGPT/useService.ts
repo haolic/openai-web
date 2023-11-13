@@ -10,8 +10,6 @@ import store, { storeRef } from '@/store';
 import { getRandomColor } from '@/utils';
 
 const useService = () => {
-  
-
   useEffect(() => {
     (async () => {
       const messageuid = localStorage.getItem(MESSAGE_UID) || '';
@@ -87,7 +85,6 @@ const useService = () => {
             abortController: storeRef.abortController,
           },
           (res: string | number) => {
-            console.log(123, res);
             if (res === -1) {
               store.sendBtnLoading = false;
               resolve('');
@@ -112,7 +109,7 @@ const useService = () => {
           (res) => {
             store.sendBtnLoading = false;
             reject(res);
-          }
+          },
         );
       } catch (e) {
         reject(e);

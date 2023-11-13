@@ -28,7 +28,6 @@ const requestEventStream = async (
     openWhenHidden: true,
     async onopen(res) {
       const messageuid = res.headers.get(MESSAGE_UID);
-      console.log(messageuid);
       if (messageuid) {
         localStorage.setItem(MESSAGE_UID, messageuid);
       }
@@ -40,8 +39,7 @@ const requestEventStream = async (
         callback(-1);
         return;
       }
-      const obj = JSON.parse(str);
-      callback(obj.choices[0].delta.content || '');
+      callback(response.data || '');
     },
     onerror(response: any) {
       console.log('onerror', response);
